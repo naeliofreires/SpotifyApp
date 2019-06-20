@@ -10,6 +10,8 @@ import { Wrapper, Container, Content } from './styles/components';
 
 import Routes from './routes';
 
+import './config/reactotron';
+
 function App() {
   return (
     <BrowserRouter>
