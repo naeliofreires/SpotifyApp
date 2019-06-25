@@ -9,6 +9,8 @@ import { Container, NewPlayList, Nav } from './styles';
 
 import AddPlayListIcon from '../../assets/images/add_playlist.svg';
 
+import Loading from '../Loading';
+
 class Sidebar extends Component {
   static propTypes = {
     getPlayList: PropTypes.func.isRequired,
@@ -19,6 +21,7 @@ class Sidebar extends Component {
           title: PropTypes.string,
         }),
       ).isRequired,
+      loading: PropTypes.bool.isRequired,
     }).isRequired,
   };
 
@@ -30,7 +33,7 @@ class Sidebar extends Component {
 
   render() {
     const {
-      playlist: { data: playlists },
+      playlist: { data: playlists, loading },
     } = this.props;
 
     return (
@@ -81,6 +84,7 @@ class Sidebar extends Component {
           <Nav>
             <li>
               <span>PLAYLISTS</span>
+              {loading && <Loading />}
             </li>
             {playlists.map(playlist => (
               <li key={playlist.id}>
