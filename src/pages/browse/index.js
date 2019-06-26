@@ -45,7 +45,7 @@ class Browser extends Component {
 
         <List>
           {data.map(play => (
-            <Playlist key={play.id} to="/playlist/1">
+            <Playlist key={play.id} to={`/playlist/${play.id}`}>
               <img src={play.thumbnail} alt="Playlist" />
               <strong>{play.title}</strong>
               <p>{play.description}</p>

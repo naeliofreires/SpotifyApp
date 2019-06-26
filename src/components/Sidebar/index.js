@@ -88,7 +88,7 @@ class Sidebar extends Component {
             </li>
             {playlists.map(playlist => (
               <li key={playlist.id}>
-                <Link to={`playlist/${playlist.id}`}>{playlist.title}</Link>
+                <Link to={`/playlist/${playlist.id}`}>{playlist.title}</Link>
               </li>
             ))}
           </Nav>
