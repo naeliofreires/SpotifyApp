@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Creators as playlistDetailActions } from '../../store/ducks/playlistDetail';
+import { Creators as playerActions } from '../../store/ducks/player';
 
 import Loading from '../../components/Loading';
 
@@ -23,6 +24,7 @@ class Playlist extends Component {
       loading: PropTypes.bool.isRequired,
     }).isRequired,
     getplaylistDetailsRequest: PropTypes.func.isRequired,
+    loadSong: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -52,6 +54,7 @@ class Playlist extends Component {
 
   renderDetails = () => {
     const {
+      loadSong,
       playlistDetails: { data },
     } = this.props;
 
@@ -85,7 +88,7 @@ class Playlist extends Component {
               </tr>
             ) : (
               data.songs.map(music => (
-                <tr>
+                <tr key={music.id} onDoubleClick={() => loadSong(music)}>
                   <td>
                     <img src={PlusIcon} alt="Adicionar" />
                   </td>
@@ -121,7 +124,13 @@ const mapStateToProps = state => ({
   playlistDetails: state.playlistsDetails,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(playlistDetailActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(
+  {
+    ...playlistDetailActions,
+    ...playerActions,
+  },
+  dispatch,
+);
 
 export default connect(
   mapStateToProps,

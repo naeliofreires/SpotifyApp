@@ -9,7 +9,6 @@ const INITIAL_STATE = {
 };
 
 export default function playlist(state = INITIAL_STATE, action) {
-  console.log('playlist: ', action);
   switch (action.type) {
     case Types.GET_REQUEST:
       return { ...state, loading: true };
