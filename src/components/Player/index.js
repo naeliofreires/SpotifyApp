@@ -1,18 +1,19 @@
-import React from 'react';
+/* eslint-disable react/button-has-type */
+import React, { Fragment } from 'react';
 import Slider from 'rc-slider';
 import Sound from 'react-sound';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import {
-  Container, Current, Volume, Progress, Controls, Time, ProgressSlider,
+  Time, Volume, Current, Progress, Controls, Container, ProgressSlider,
 } from './styles';
 
 import VolumeIcon from '../../assets/images/volume.svg';
 import ShuffleIcon from '../../assets/images/shuffle.svg';
 import BackwardIcon from '../../assets/images/backward.svg';
 import PlayIcon from '../../assets/images/play.svg';
-import PauseIcon from '../../assets/images/pause.svg';
+// import PauseIcon from '../../assets/images/pause.svg';
 import ForwardIcon from '../../assets/images/forward.svg';
 import RepeatIcon from '../../assets/images/repeat.svg';
 
@@ -21,14 +22,15 @@ const Player = ({ player }) => (
     {!!player.currentSong && <Sound url={player.currentSong.file} playStatus={player.status} />}
 
     <Current>
-      <img
-        src="https://99designs-blog.imgix.net/blog/wp-content/uploads/2017/12/Stargroves-album-cover.png?auto=format&q=60&fit=max&w=930"
-        alt="Cover Imagem"
-      />
-      <div>
-        <span>Times like these</span>
-        <small>Foo Fighters</small>
-      </div>
+      {!!player.currentSong && (
+        <Fragment>
+          <img src={player.currentSong.thumbnail} alt={player.currentSong.title} />
+          <div>
+            <span>{player.currentSong.title}</span>
+            <small>{player.currentSong.author}</small>
+          </div>
+        </Fragment>
+      )}
     </Current>
 
     <Progress>
@@ -79,6 +81,9 @@ Player.propTypes = {
   player: PropTypes.shape({
     status: PropTypes.bool.isRequired,
     currentSong: PropTypes.shape({
+      author: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      thumbnail: PropTypes.string.isRequired,
       file: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,

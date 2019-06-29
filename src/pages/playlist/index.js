@@ -62,8 +62,10 @@ class Playlist extends Component {
   };
 
   renderDetails = () => {
+    const { selectedSong } = this.state;
     const {
       loadSong,
+      currentSong,
       playlistDetails: { data },
     } = this.props;
 
@@ -101,8 +103,8 @@ class Playlist extends Component {
                   key={music.id}
                   onDoubleClick={() => loadSong(music)}
                   onClick={() => this.setState({ selectedSong: music.id })}
-                  selected={this.state.selectedSong === music.id}
-                  playing={this.props.currentSong && this.props.currentSong.id === music.id}
+                  selected={selectedSong === music.id}
+                  playing={currentSong && currentSong.id === music.id}
                 >
                   <td>
                     <img src={PlusIcon} alt="Adicionar" />
