@@ -1,5 +1,8 @@
-Simples aplicação se espelhando no Spotify
+# :computer: Aplicação Web - Clonando o Spotify :musical_note:
 
+![Home](spotify-home.png)
+
+## Funcionalidades
 - Playlist
 - Tocar musica
 - Pausar musica
@@ -7,9 +10,17 @@ Simples aplicação se espelhando no Spotify
 - Acompanhar o progresso
 - ...
 
-![Home](spotify-home.png)
+## Tecnologias
+- Axios
+- React
+- Redux
+- Redux Saga
+- RC Slider
+- React Sound
+- Styled Components
+- JSON Server
 
- ## Como rodar a aplicação:
+ ## Run
  
  - 1˚ yarn
  - 2˚ json-server spotify-json-server.json -p 30001 --watch -d 500
